@@ -1,10 +1,8 @@
-import { ChangeEvent, ElementType, InputHTMLAttributes } from "react";
+import { ElementType } from "react";
 
-export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps {
   type: 'text' | 'password' | 'email' | 'number' | 'date';
-  value: string,
   placeholder: string,
   iconStart?: ElementType,
   hasError?: boolean,
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void
 }

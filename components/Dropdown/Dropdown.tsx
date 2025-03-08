@@ -2,11 +2,11 @@
 import * as Select from '@/components/ui/select';
 import { DropdownProps } from './DropdownProps';
 
-export function Dropdown({ options, placeholder }: DropdownProps) {
+export function Dropdown({ options, placeholder, onChange }: DropdownProps) {
 
   return (
     <div className='w-full'>
-      <Select.Root>
+      <Select.Root onValueChange={onChange}>
         <Select.Trigger aria-label={placeholder}>
           <Select.Value placeholder={placeholder} />
         </Select.Trigger>
