@@ -1,20 +1,24 @@
 'use client';
 import * as T from '@/components/ui/textarea';
+import { forwardRef, ForwardRefRenderFunction } from 'react';
+import { Controller } from 'react-hook-form';
 import { TexteareaProps } from './TexteareaProps';
 
-export function Textarea({ placeholder, value, onChange, ...rest }: TexteareaProps) {
+const TextareaBase: ForwardRefRenderFunction<HTMLTextAreaElement, TexteareaProps> = ({ placeholder, name, rules, control, ...rest }) => {
   return (
-    <div className='w-full'>
-      <T.Root
-        {...rest}
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}>
-
-        <T.CharCounter
-          current={value.length}
-          max={500} />
-      </T.Root>
-    </div>
+    <Controller
+      name={name}
+      control={control}
+      rules={rules}
+      render={({ field }) => (
+        <div className="w-full">
+          <T.Root {...rest} placeholder={placeholder} {...field}>
+            <T.CharCounter current={field.value?.length || 0} max={500} />
+          </T.Root>
+        </div>
+      )}
+    />
   );
 }
+
+export const Textarea = forwardRef(TextareaBase);

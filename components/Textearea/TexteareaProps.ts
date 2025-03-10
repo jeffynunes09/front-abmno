@@ -1,8 +1,10 @@
-import { ChangeEvent, TextareaHTMLAttributes } from "react";
+import { TextareaHTMLAttributes } from "react";
+import { Control, RegisterOptions } from "react-hook-form";
 
-export interface TexteareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement>  {
-  value: string,
+export interface TexteareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+  name: string,
   placeholder: string,
+  rules?: RegisterOptions,
   hasError?: boolean,
-  onChange:  (e: ChangeEvent<HTMLTextAreaElement>) => void
+  control: Control<any>
 }

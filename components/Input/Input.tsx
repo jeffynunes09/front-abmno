@@ -4,10 +4,10 @@ import {
   RiEyeLine,
   RiEyeOffLine
 } from '@remixicon/react';
-import { useState } from 'react';
+import { forwardRef, ForwardRefRenderFunction, useState } from 'react';
 import { InputProps } from './InputProps';
 
-export function Input({ type, value, placeholder, iconStart, onChange, size, ...rest }: InputProps) {
+const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = ({ type, placeholder, iconStart, ...rest }, ref) => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
@@ -17,8 +17,7 @@ export function Input({ type, value, placeholder, iconStart, onChange, size, ...
           {iconStart && <I.Icon as={iconStart} />}
           <I.Input
             {...rest}
-            onChange={onChange}
-            value={value}
+            ref={ref}
             type={type === "password" ? (showPassword ? "text" : "password") : type}
             placeholder={placeholder} />
 
@@ -36,3 +35,5 @@ export function Input({ type, value, placeholder, iconStart, onChange, size, ...
     </div>
   );
 }
+
+export const Input = forwardRef(InputBase);
