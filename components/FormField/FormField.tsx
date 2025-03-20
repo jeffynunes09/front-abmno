@@ -22,7 +22,7 @@ const Form: ForwardRefRenderFunction<HTMLInputElement, FormFieldProps> = (
     <div className='inline'>
       <Label
         label={label}
-        campoObrigatorio
+        campoObrigatorio={campoObrigatorio}
         asteriskColor={asteriskColor}
         {...rest}
       />
